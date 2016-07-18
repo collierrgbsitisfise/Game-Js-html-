@@ -1,0 +1,146 @@
+<html>
+
+<head>
+
+<style>
+
+body
+{
+    cursor:none;
+-moz-user-select: none; 
+        -khtml-user-select: none; 
+        -webkit-user-select: none; 
+        -o-user-select: none;
+}
+
+#krot
+{
+	position:absolute;
+	width: 300px;
+	height: 500px;
+}
+#kuvalda
+{
+	position:absolute;
+}
+#count
+{
+	color:red;
+	font-size:30px;
+	font-weight:bold;
+}
+#kr{
+	width: 300px;
+	height: 500px;
+}
+</style>
+
+
+
+</head>
+
+<body onMouseMove="cursor()" onMouseDown = "hit()" onMouseUp = "take()">
+
+<div id="count">
+0 3
+</div>
+
+<div id = "krot" onClick="kill();">
+<img src = "https://pp.vk.me/c627726/v627726852/13391/N3rMPkgGDqw.jpg"  width="200px" height="300px">
+</div>
+
+
+<div id = "kuvalda">
+<img src="https://pp.vk.me/c627726/v627726852/13398/fPjPBIrPtAk.jpg.png"  width="150px" height="75px" />
+</div>
+
+</body>
+
+
+<script>
+var count=0, killable = false;
+var lives=6;
+function soundClick() {
+  var audio = new Audio(); 
+  audio.src = 'Og_Kid_Frost-Like_A_Boss_RingTone(musico.by).mp3'; 
+  audio.autoplay = true; 
+}
+function kill()
+{
+	document.getElementById("krot").innerHTML="<img src='https://pp.vk.me/c627726/v627726586/16d83/Wl0Q0Ao-hG8.jpg' />";
+if(killable == true)
+{
+	document.getElementById("count").innerHTML=++count+" "+lives;
+	killable = false;
+}
+}
+
+function hit()
+{
+	document.getElementById("kuvalda").innerHTML="<img src='https://pp.vk.me/c627726/v627726852/133b1/l0j_yCBqyho.jpg' width='150px' height='75px' />";
+}
+function take()
+{
+	document.getElementById("kuvalda").innerHTML="<img src='https://pp.vk.me/c627726/v627726852/13398/fPjPBIrPtAk.jpg' width='150px' height='75px' />";
+}
+
+
+
+function cursor(e)
+{
+    	if(!e) e = event; 
+	var mX= e.clientX;
+	var mY= e.clientY;
+
+	document.getElementById("kuvalda").style.marginTop = mY - 120;
+	document.getElementById("kuvalda").style.marginLeft = mX;
+}
+
+
+function getRandomInt(min, max)
+{
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function change_position()
+{
+
+if(killable==true && lives>0)
+{
+	lives=lives-1;
+}
+
+document.getElementById("count").innerHTML=count+" "+lives;
+
+if(lives==0 && count<12)
+{
+	document.getElementById("count").innerHTML="";
+		document.getElementById("count").innerHTML +="<img src='https://pp.vk.me/c627726/v627726852/133a1/-ecAAyxAwe8.jpg' width='1000px' height='800px'/>";
+    //setTimeout(soundClick(), 10000);
+	alert("Vovka Win!!!");
+	lives=4;
+	count=0;
+}
+if(lives == 0 && count>12)
+{
+document.getElementById("count").innerHTML="";
+		document.getElementById("count").innerHTML +="<img src='https://pp.vk.me/c627726/v627726852/133c6/1hkj1_UBrT4.jpg' width='1000px' height='800px'/>";
+
+	alert("Ti Spas Slavika !!!");
+	lives=4;
+	count=0;	
+}
+
+killable = true;
+var x = getRandomInt(0, 600);
+var y = getRandomInt(0, 600);
+document.getElementById("krot").style.marginTop = x;
+document.getElementById("krot").style.marginLeft = y;
+document.getElementById("krot").innerHTML="<img src = 'https://pp.vk.me/c627726/v627726852/13391/N3rMPkgGDqw.jpg'  width='200px' height='300px'> ";
+}
+
+setInterval(change_position,1000);
+
+</script>
+
+<u/html>
